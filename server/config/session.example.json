@@ -1,0 +1,6 @@
+{
+	"secret" : "...",
+	"name" : "example",
+	"resave" : "false",
+	"saveUninitialized" : "true"
+}
