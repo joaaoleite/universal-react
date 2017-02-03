@@ -4,6 +4,9 @@ node_modules
 npm-debug.log
 
 dist/
+
 server/config/session.json
 server/config/google.json
 server/config/mongo.json
+
+semantic/

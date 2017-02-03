@@ -23,13 +23,18 @@ module.exports = function(server){
 	server.engine('html', ejs.renderFile)
 	server.set('views', root)
 
+	// Disable server-side rendering:
+	// change '/admin*' to '*'
+	server.get('/admin*', (req, res)=>{
+		res.sendFile('view.html', {root})
+	})
+
 	server.get('*', (req, res) => {
 		match(
 		{ routes, location: req.url },
 	    (err, redirect, renderProps) => {
 
 			if (err) return res.status(500).send(err.message)
-
 	      	if (redirect) return res.redirect(302,redirect.pathname+redirect.search)
 
 			let markup
@@ -41,7 +46,6 @@ module.exports = function(server){
 		        markup = renderToString(<Provider store={store}><NotFoundPage/></Provider>)
 		        res.status(404)
 	      	}
-
 	      	return res.render('view', { markup })
 	    })
 	})

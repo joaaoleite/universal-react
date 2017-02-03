@@ -1,40 +1,27 @@
 
-const debug = process.env.NODE_ENV !== "production";
+const debug = process.env.NODE_ENV !== "production"
+console.log('debug',debug)
 
-const webpack = require('webpack');
-const path = require('path');
+const path 		= require("path")
+const webpack 	= require("webpack")
 
 module.exports = {
-	devtool: debug ? 'inline-sourcemap' : null,
-	entry: path.join(__dirname, 'app', 'www', 'js','main.js'),
-	devServer: {
-		inline: true,
-		port: 3333,
-		contentBase: "app/www",
-		historyApiFallback: {
-			index: '/index.html'
-		}
-	},
-	output: {
-		path: path.join(__dirname,'dist','js'),
-		publicPath: "/js/",
-		filename: 'main.js'
-	},
-	module: {
-		loaders: [{
-			test: /\.js?$/,
-			loader: ['babel-loader'],
-			exclude: [
-				path.join(__dirname,'node_modules') //important for performance!
-			],
-			query: {
-				cacheDirectory: 'babel_cache',
-				plugins: ['react-html-attrs','transform-class-properties','transform-decorators-legacy'],
-				presets: debug ? ['react', 'es2015', "stage-0", 'react-hmre'] : ['react', 'es2015', "stage-0"]
-			}
-		}]
-	},
-	plugins: debug ? [] : [
+    cache: true,
+    devtool: "eval",
+    entry: {
+        main: path.join(__dirname,"app","www","js","main.js")
+    },
+    output: {
+        path: path.join(__dirname, "dist","js"),
+        filename: "[name].js",
+        chunkFilename: "[name].js"
+    },
+    plugins: debug ? [
+        new webpack.DllReferencePlugin({
+            context: path.join(__dirname,"app"),
+            manifest: require(path.join(__dirname,"dist","js","vendor-manifest.json"))
+        })
+      ] : [
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
 		}),
@@ -47,5 +34,28 @@ module.exports = {
 			beautify: false,
 			dead_code: true
 		}),
-	]
-};
+	],
+    module: {
+        loaders: [
+            {
+                test: /\.js?$/,
+                loader: "babel-loader",
+                include: [
+                    path.join(__dirname,"app") //important for performance!
+                ],
+                query: {
+                    cacheDirectory: true, //important for performance
+					plugins: ['react-html-attrs','transform-class-properties','transform-decorators-legacy'],
+					presets: debug ?
+						['react', 'es2015', "stage-0", 'react-hmre'] :
+						['react', 'es2015', "stage-0"],
+                }
+            }
+        ]
+    },
+    resolve: {
+        extensions: ["", ".js", ".jsx"],
+        root: path.resolve(__dirname, "app"),
+        modulesDirectories: ["node_modules"],
+    }
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
 import { fetchDocuments } from '../../actions/document'
 
@@ -16,6 +17,7 @@ export default class Documents extends Component {
 	}
 	render() {
     	return <div className="home">
+			<Link to='/admin'>ADMIN</Link>
         	<div className="doc-item">
           		{this.props.docs.map(doc => <Document key={doc.id} {...doc} />)}
         	</div>

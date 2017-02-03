@@ -1,6 +1,6 @@
 {
-    "client_id" : "...",
-    "client_secret" : "...",
-    "redirect_uri" : "...",
-    "refresh_token" : "..."
+    "clientID" : "...",
+    "clientSecret" : "...",
+    "callbackURL" : "http://localhost:8080/auth/google/callback",
+    "refreshToken" : "..."
 }

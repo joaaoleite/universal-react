@@ -15,5 +15,19 @@ module.exports.init = function(done = ()=>{}){
 }
 
 module.exports.collection = function(name){
-	return connection.collection(name);
+	let collection = connection.collection(name)
+
+	/* functions */
+	collection.findOrCreate = function(doc,done){
+		let id = doc.id
+		collection.updateOne({id}, doc, {upsert:true,w:1}, (err)=>{
+			if(err) return done(err)
+			collection.findOne({id}, (err, item)=>{
+				if(err) return done(err)
+				done(null,item)
+			})
+		})
+	}
+
+	return collection
 }
