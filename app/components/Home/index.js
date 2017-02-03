@@ -19,7 +19,7 @@ export default class Documents extends Component {
     	return <div className="home">
 			<Link to='/admin'>ADMIN</Link>
         	<div className="doc-item">
-          		{this.props.docs.map(doc => <Document key={doc.id} {...doc} />)}
+          		{this.props.docs.map((doc,i)=><Document key={i} {...doc} />)}
         	</div>
       	</div>
   	}

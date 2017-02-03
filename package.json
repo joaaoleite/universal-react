@@ -6,9 +6,8 @@
   "repository": "git@github.com:joaaoleite/universal-react.git",
   "scripts": {
     "mongo": "sudo mongod",
-    "start": "NODE_ENV=production node_modules/.bin/babel-node --plugins 'react-html-attrs,transform-decorators-legacy,transform-class-properties' --presets 'react,es2015,stage-0' server",
-    "build": "NODE_ENV=production node_modules/.bin/webpack -p",
-    "gulp": "gulp"
+    "start": "NODE_ENV=production babel-node --plugins 'react-html-attrs,transform-decorators-legacy,transform-class-properties' --presets 'react,es2015,stage-0' server",
+    "build": "NODE_ENV=production webpack -p"
   },
   "author": "joaaoleite",
   "license": "MIT",

@@ -29,6 +29,11 @@ gulp.task('images', ()=>{
         .pipe(gulp.dest(dist+'images'))
 		.pipe(reload())
 })
+gulp.task('favicon', ()=>{
+	return gulp.src("app/www/images/favicon.*")
+        .pipe(gulp.dest(dist))
+		.pipe(reload())
+})
 
 
 gulp.task('vendor',()=>{
@@ -44,12 +49,12 @@ gulp.task('vendor',()=>{
 		.pipe(gulp.dest(dist+'fonts/'))
 })
 
-gulp.task('default',['css','js','html','images'])
+gulp.task('default',['css','js','html','images','favicon'])
 
 gulp.task('watch',()=>{
 	reload.listen()
-     gulp.watch('app/www/index.html', 		['html']) 
+     gulp.watch('app/www/view.html', 		['html']) 
      gulp.watch('app/www/css/style.less', 	['css']) 
      gulp.watch('app/**/*.js', 				['js']) 
-     gulp.watch('app/www/images/*.png', 	['assets']) 
+     gulp.watch('app/www/images/*.*', 		['images','favicon']) 
 })

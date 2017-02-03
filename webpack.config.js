@@ -47,7 +47,7 @@ module.exports = {
                     cacheDirectory: true, //important for performance
 					plugins: ['react-html-attrs','transform-class-properties','transform-decorators-legacy'],
 					presets: debug ?
-						['react', 'es2015', "stage-0", 'react-hmre'] :
+						['react', 'es2015', "stage-0"] :
 						['react', 'es2015', "stage-0"],
                 }
             }
