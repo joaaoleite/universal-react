@@ -3,13 +3,14 @@ import { connect } from 'react-redux'
 import { fetchDocuments } from '../../actions/document'
 
 import NotFoundPage from '../NotFoundPage'
+import Document from './Document'
 
 @connect((store)=>{
 	return {
 		docs : store.document.documents
 	}
 })
-export default class Document extends Component {
+export default class Documents extends Component {
 	componentWillMount(){
 		this.props.dispatch(fetchDocuments())
 	}
@@ -18,10 +19,8 @@ export default class Document extends Component {
 
 		if(!doc) return <NotFoundPage/>
 
-    	return <div className="document-page">
-			<h2>{doc.title}</h2>
-			<span>{doc.id}</span>
-			<p>{doc.content}</p>
-      	</div>
+    	return <List celled>
+			{this.props.docs.map((d,i)=><Document key={i} {...d} />)}
+    	</List>
   	}
 }

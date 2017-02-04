@@ -6,6 +6,8 @@ require('react-redux')
 require('react-router-redux')
 
 require('semantic-ui-react')
+require('react-datetime')
+require('moment')
 
 require('redux')
 require('redux-logger')

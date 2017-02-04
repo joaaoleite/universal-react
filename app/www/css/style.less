@@ -1,0 +1,28 @@
+
+
+html, body, #main, .layout-app{ margin:0; padding:0; height:100%; }
+body { padding-top: 70px; }
+
+#admin {
+	.documents {
+		.segment {
+			.input { width:100%; }
+		}
+		.doc-item {
+			.image { width:80px !important; height:60px !important; }
+			.content {
+				button { margin-top:16px; }
+				.header { font-size: 16px; font-weight: normal; margin-bottom: 7px; }
+				.item {
+					color: #777; font-size: 12px; margin-right: 20px;
+					.icon { float:left; margin-right: -3px; }
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 770px) {
+	.doc-item .content button { display:none; }
+	.doc-item .content .item:nth-child(3) { display:none; }
+}

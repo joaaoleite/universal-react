@@ -25,7 +25,7 @@ module.exports = function(server){
 
 	// Disable server-side rendering:
 	// change '/admin*' to '*'
-	server.get('/admin*', (req, res)=>{
+	server.get('*', (req, res)=>{
 		res.sendFile('view.html', {root})
 	})
 

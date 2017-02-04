@@ -19,7 +19,7 @@ export function fetchMe(){
 export function requireAuth(nextState, replace, done) {
 	axios.get(url('/api/me'))
 		.then((res)=>{
-			if(res.data && res.data.id) done()
+			if(res.data && res.data.id) return done()
 			else window.location.href = '/auth/google'
 		})
 		.catch((err)=>{

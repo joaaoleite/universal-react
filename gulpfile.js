@@ -46,7 +46,7 @@ gulp.task('vendor',()=>{
 		.pipe(gulp.dest(dist+'css'))
 
 	gulp.src('semantic/src/themes/default/assets/fonts/*')
-		.pipe(gulp.dest(dist+'fonts/'))
+		.pipe(gulp.dest(dist+'themes/default/assets/fonts/'))
 })
 
 gulp.task('default',['css','js','html','images','favicon'])
