@@ -56,25 +56,27 @@ export default class Documents extends Component {
 
 		return <div class='documents'>
 			<Segment raised>
-				<Grid columns='equal'>
-					<Grid.Column>
+				<Grid>
+					<Grid.Column computer={5} tablet={7} mobile={11}>
 						<Input style={{width:'100%'}} icon='search' placeholder='Filter documents...' />
 					</Grid.Column>
-					<Grid.Column>
-						<div style={{width:'100%'}} class='ui input'>
-							<Datetime defaultValue='start date' style={{width:'100%'}} />
+					<Grid.Column computer={3} only='tablet'>
+						<div class='ui icon input'>
+							<Datetime style={{position:'relative'}} timeFormat={false} dateFormat='YYYY/MM/DD' inputProps={{placeholder:'Start date'}} style={{width:'100%'}} />
+							<i aria-hidden="true" class="calendar icon"></i>
 						</div>
 					</Grid.Column>
-					<Grid.Column>
-						<div style={{width:'100%'}} class='ui input'>
-							<Datetime defaultValue='end date' style={{width:'100%'}} />
+					<Grid.Column computer={3} only='tablet'>
+						<div class='ui icon input'>
+							<Datetime timeFormat={false} dateFormat='YYYY/MM/DD' inputProps={{placeholder:'End date'}} style={{width:'100%'}} />
+							<i aria-hidden="true" class="calendar icon"></i>
 						</div>
 					</Grid.Column>
-					<Grid.Column>
-						<Dropdown selection fluid options={publishing} placeholder='Video publishing' />
+					<Grid.Column only='computer' larg computer={3}>
+						<Dropdown selection fluid options={publishing} placeholder='State' />
 					</Grid.Column>
-					<Grid.Column textAlign='right'>
-						<Button icon='plus' content='Create' color='green' />
+					<Grid.Column verticalAlign='middle' textAlign='right' computer={2} tablet={3} mobile={5}>
+						<Button size='tiny' icon='plus' content='New' color='green' />
 					</Grid.Column>
 				</Grid>
 			</Segment>
